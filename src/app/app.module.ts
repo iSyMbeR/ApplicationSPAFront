@@ -6,16 +6,31 @@ import {BookComponent} from './components/book/book.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BookService} from "./services/book/book.service";
 import {FormsModule} from "@angular/forms";
+import { AuthorComponent } from './components/author/author.component';
+import {RouterModule} from "@angular/router";
+import { MainpageComponent } from './components/mainpage/mainpage.component';
+import { BookListComponent } from './components/booklist/book-list.component';
+import { AuthorlistComponent } from './components/authorlist/authorlist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookComponent
+    BookComponent,
+    AuthorComponent,
+    MainpageComponent,
+    BookListComponent,
+    AuthorlistComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      {path: 'book', component: BookComponent},
+      {path: 'author', component: AuthorComponent},
+      {path: 'bookList', component: BookListComponent},
+      {path: 'authorList', component: AuthorlistComponent},
+    ])
   ],
   providers: [BookService],
   bootstrap: [AppComponent]

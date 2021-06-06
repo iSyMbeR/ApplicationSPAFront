@@ -17,9 +17,12 @@ export class AuthorService {
   public getAuthors(): Observable<Author[]> {
     return this.httpClient.get<Author[]>(`${this.apiServerUrl}/author/all`);
   }
+  public findAuthorByName(authorName: string): Observable<Author> {
+    return this.httpClient.get<Author>(`${this.apiServerUrl}/author/getByName/${authorName}`);
+  }
 
   public addAuthor(author: Author): Observable<Author> {
-    return this.httpClient.post<Author>(`${this.apiServerUrl}/author`, author);
+    return this.httpClient.post<Author>(`${this.apiServerUrl}/author/add`, author);
   }
 
   public updateAuthor(author: Author): Observable<Author> {

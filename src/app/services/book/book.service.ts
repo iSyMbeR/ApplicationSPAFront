@@ -18,6 +18,10 @@ export class BookService {
     return this.httpClient.get<Book[]>(`${this.apiServerUrl}/book/all`);
   }
 
+  public getAllBooksOfAuthor(authorFirstName: string, authorLastName: string): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(`${this.apiServerUrl}/book/getAllBooksOfAuthor/${authorFirstName}/${authorLastName}`);
+  }
+
   public getGenres(): Observable<string[]> {
     return this.httpClient.get<string[]>(`${this.apiServerUrl}/book/allGenres`);
   }

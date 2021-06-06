@@ -1,31 +1,6 @@
-<input type="text" #newBook><br>
-<button type="button" (click)="getBooks()">Wyswietl wszystkie ksiazki</button>
 
-<form #bookForm="ngForm">
+<form #bookForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
   <hr/>
-  <div ngModelGroup="author" hidden="hidden">
-    <div class="form-group">
-      <label>Author first name</label>
-      <input type="text" name="firstName" [(ngModel)]="authorModel.firstName">
-    </div>
-
-    <div class="form-group">
-      <label>Author second name</label>
-      <input type="text" name="secondName" [(ngModel)]="authorModel.secondName">
-    </div>
-
-    <div class="form-group">
-      <label>Author last name</label>
-      <input type="text" name="lastName" [(ngModel)]="authorModel.lastName">
-    </div>
-
-    <div class="form-group">
-      <label>Author bibliography</label>
-      <textarea name="bibliography" [(ngModel)]="authorModel.bibliography" cols="40" rows="5"></textarea>
-    </div>
-
-  </div>
-
   <div class="form-group">
     <label>Book name</label>
     <input type="text" required="required" class="form-control" #name="ngModel" pattern="[a-zA-Z ]*" minlength="5"
@@ -33,12 +8,14 @@
            [class.is-invalid]="name.touched && name.invalid"
            [class.is-valid]="name.valid && name.touched"
            name="name" [(ngModel)]="bookModel.name">
-    <small class="text-danger" [class.d-none]="name.valid || name.untouched">Book name is required</small><br>
-    <small class="text-danger" [class.d-none]="name.valid || name.untouched">Book name is required</small>
+    <div *ngIf="name.errors && name.touched">
+      <small class="text-danger" *ngIf="name.errors.required">Book name is required</small>
+      <small class="text-danger" *ngIf="name.errors.pattern">Book name requires only letters</small>
+    </div>
   </div>
 
   <div class="form-group">
-    <select class="custom-select" #bookGenre="ngModel"
+    <select class="custom-select" #bookGenre="ngModel" required="required"
             [class.is-invalid]="bookGenre.touched && !genres.includes(bookGenre.value)"
             [class.is-valid]="bookGenre.touched && genres.includes(bookGenre.value)"
             name="bookGenre" [(ngModel)]="bookModel.bookGenre">
@@ -47,26 +24,33 @@
         {{genre}}
       </option>
     </select>
-    <small>Book genre is required</small>
+    <small class="text-danger" [class.d-none]="bookGenre.untouched || genres.includes(bookGenre.value)">Book genre is required</small><br>
   </div>
 
-  <div class="formGroup">
+  <div class="form-group">
     <label>Book date release</label>
     <input type="date" class="form-control" #releaseDate="ngModel" required="required"
            [class.is-invalid]="releaseDate.invalid && releaseDate.touched"
            [class.is-valid]="releaseDate.valid && releaseDate.touched"
            name="releaseDate" [(ngModel)]="bookModel.releaseDate">
-    <small>Book genre is required</small>
+    <small class="text-danger" [class.d-none]="releaseDate.valid || releaseDate.untouched">Book release date is required</small><br>
   </div>
 
   <div class="form-group">
-    <select class="custom-select" name="author" [(ngModel)]="bookModel.author">
-      <option value="">Choose the author</option>
-      <option *ngFor="let book of books">
-        {{book.author.firstName}}
+    <select class="custom-select" #author="ngModel" required="required"
+            [class.is-invalid]="author.touched && !(isAuthorSelected(author.value))"
+            [class.is-valid]="author.touched && isAuthorSelected(author.value)"
+            name="aut" [(ngModel)]="bookModel.author">
+      <option value="default">Choose the author</option>
+      <option *ngFor="let a of authors">
+        {{a.firstName}}
       </option>
     </select>
-    <small>Author is required</small>
+    <small class="text-danger" [class.d-none]="author.untouched || isAuthorSelected(author.value)">Book author is required</small><br>
   </div>
 
+  <!--walidacja calej formy-->
+  <button [disabled]="bookForm.form.invalid || !isAuthorSelected(author.value) || !genres.includes(bookGenre.value)" class="btn btn-primary" type="submit">Add book</button>
 </form>
+<p class="addNewAuthorParagraph">Cant find your author? Add him! <button name ='authorButton' class="btn btn-primary" (click)="addAuthorForm()">Add author</button></p>
+<app-author id = 'authorForm' hidden="hidden"></app-author>

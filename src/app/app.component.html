@@ -1,5 +1,39 @@
-<div class ='mainDiv'>
-  <h1>Witam z glownego</h1>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<div>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+
+
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="">Main page</a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="/book">Add Book</a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="/author">Add Author</a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="/bookList">Books list</a>
+      </div>
+
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="/authorList">Author list</a>
+      </div>
+    </div>
+  </nav>
 </div>
 
-<app-book></app-book>
+<router-outlet></router-outlet>
+<div id="footer" class="navbar navbar-dark bg-primary">Created without passion by Kamil Lobasiuk 2021</div>
