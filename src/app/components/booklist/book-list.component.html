@@ -1,0 +1,32 @@
+<div class="mainBackground">
+  <div class="text-center">
+    <h1>Book list!</h1>
+    <input type="text" id="name" required #filterValue (keyup)="filterFunction(filterValue.value)"
+           placeholder="Search for names.." title="Type in a name">
+    <button name='sortDESC' class="btn btn-primary-sm" (click)="filterFunctionDate()">Sort by Date</button>
+    <button name='sortASC' class="btn btn-primary-sm" (click)="filterFunctionName()">Sort by name</button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Nr</th>
+      <th scope="col">Name</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Author</th>
+      <th scope="col">Release Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let book of filteredBooks;let indexOfElement=index; ">
+      <th scope="row">{{indexOfElement + 1}}</th>
+      <td>{{book.name}}</td>
+      <td>{{book.bookGenre}}</td>
+      <td>{{book.author.firstName + " " + book.author.lastName}}</td>
+      <td>{{getCorrectFormatDate(book.releaseDate)}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <button name='editBook' class="btn btn-primary" routerLink="/bookEditor">Edit books</button>
+  </div>
+</div>

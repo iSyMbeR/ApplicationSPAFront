@@ -1,0 +1,19 @@
+<div class="mainBackground">
+  <form #authorForm="ngForm" (ngSubmit)="onSubmit(author.value)" novalidate>
+    <hr/>
+    <div class="form-group">
+      <label>Choose Author to delete</label>
+      <select class="custom-select" #author="ngModel" required="required"
+              name="author" [(ngModel)]="authorModel">
+        <option *ngFor="let bo of authors; let indexOfElement=index">
+          {{indexOfElement + 1}}.
+          {{bo.firstName}} written by {{bo.lastName}}
+        </option>
+      </select>
+    </div>
+    <!--walidacja calej formy-->
+    <div class="text-center">
+      <button class="btn btn-primary" type="submit">Remove author</button>
+    </div>
+  </form>
+</div>

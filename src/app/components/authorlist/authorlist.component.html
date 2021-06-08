@@ -1,0 +1,40 @@
+<div class="mainBackground">
+  <div class="text-center">
+    <h1>Author list!</h1>
+    <button id = "buttonShowAuthorsWithBoot" class="btn btn-primary" (click)="getAuthorBooks()">Show Authors with books</button>
+  </div>
+  <div class="text-center">SORT</div>
+  <div class="text-center">
+    <button name='sortDESC' class="btn btn-primary-sm" (click)="filterFunctionFirstName()">Sort By first name</button>
+    <button name='sortASC' class="btn btn-primary-sm" (click)="filterFunctionLastName()">Sort By last name</button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Nr</th>
+      <th scope="col">Name</th>
+      <th scope="col">Second Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Description</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let author of authors;let indexOfElement=index">
+    <tr id="authorsTable">
+      <th scope="col">{{indexOfElement + 1}}</th>
+      <th scope="col">{{author.firstName}}</th>
+      <th scope="col">{{author.secondName}} </th>
+      <th scope="col">{{author.lastName}}</th>
+      <th scope="col">{{author.description}}</th>
+    </tr>
+    <tr id="authorAndTheseBooks" *ngFor="let book of authorsBooks.get(author)">
+      <th scope="row">&#9899;</th>
+      <td> {{book.name}} </td>
+      <td>{{book.bookGenre}}</td>
+      <td>{{getCorrectFormatDate(book.releaseDate)}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <button name='editAuthor' class="btn btn-primary" routerLink="/authorEditor">Edit author</button>
+  </div>
+</div>

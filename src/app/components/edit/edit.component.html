@@ -1,0 +1,19 @@
+<div class="mainBackground">
+  <form #bookForm="ngForm" (ngSubmit)="onSubmit(book.value)" novalidate>
+    <hr/>
+    <div class="form-group">
+      <label>Choose book to delete</label>
+      <select class="custom-select" #book="ngModel" required="required"
+              name="book" [(ngModel)]="bookModel">
+        <option *ngFor="let bo of books; let indexOfElement=index">
+          {{indexOfElement + 1}}.
+          {{bo.name}} written by {{bo.author.firstName + bo.author.lastName}}
+        </option>
+      </select>
+    </div>
+    <!--walidacja calej formy-->
+    <div class="text-center">
+      <button class="btn btn-primary" type="submit">Remove book</button>
+    </div>
+  </form>
+</div>
