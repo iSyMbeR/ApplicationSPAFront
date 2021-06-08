@@ -21,7 +21,6 @@ export class AuthorComponent implements OnInit {
   public addNewAuthorModel(): void {
     this.authorService.addAuthor(this.authorModel).subscribe(
       (response: Author) => {
-        console.log(response);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

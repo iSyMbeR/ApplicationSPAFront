@@ -1,55 +1,70 @@
-<form #authorForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
-  <hr/>
+<div class="mainBackground">
+  <form #authorForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <hr/>
 
-  <div class="form-group">
-    <label>Author name</label>
-    <input type="text" required="required" class="form-control" #firstName="ngModel" pattern="[a-zA-Z ]*" minlength="3"
-           maxlength="50"
-           [class.is-invalid]="firstName.touched && firstName.invalid"
-           [class.is-valid]="firstName.valid && firstName.touched"
-           name="firstName" [(ngModel)]="authorModel.firstName">
-    <div *ngIf="firstName.errors && firstName.touched">
-      <small class="text-danger" *ngIf="firstName.errors.required">First name is required</small>
-      <small class="text-danger" *ngIf="firstName.errors.pattern">First name requires only letters</small>
+    <div class="form-group">
+
+      <div class="flip-box">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+            <img src="assets/images/Janusz2.png" alt="Janusz" width="100" height="100">
+          </div>
+          <div class="flip-box-back">
+            <img src="assets/images/Janusz.png" alt="Janusz" width="100" height="100">
+          </div>
+        </div>
+      </div>
+      <label>Author name</label>
+      <input type="text" required="required" class="form-control" #firstName="ngModel" pattern="[a-zA-Z ]*"
+             minlength="3"
+             maxlength="50"
+             [class.is-invalid]="firstName.touched && firstName.invalid"
+             [class.is-valid]="firstName.valid && firstName.touched"
+             name="firstName" [(ngModel)]="authorModel.firstName">
+      <div *ngIf="firstName.errors && firstName.touched">
+        <small class="text-danger" *ngIf="firstName.errors.required">First name is required</small>
+        <small class="text-danger" *ngIf="firstName.errors.pattern">First name requires only letters</small>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label>Author second name(optional)</label>
-    <input type="text" required class="form-control" #secondName="ngModel" pattern="[a-zA-Z ]*" minlength="2"
-           maxlength="50"
-           [class.is-invalid]="secondName.invalid && secondName.value.length>0"
-           [class.is-valid]="secondName.valid && secondName.touched"
-           name="secondName" [(ngModel)]="authorModel.secondName">
-    <div *ngIf="secondName.errors && secondName.touched">
-      <small class="text-danger" *ngIf="secondName.errors.pattern">Second name requires only letters</small>
+    <div class="form-group">
+      <label>Author second name(optional)</label>
+      <input type="text" required class="form-control" #secondName="ngModel" pattern="[a-zA-Z ]*" minlength="2"
+             maxlength="50"
+             [class.is-invalid]="secondName.invalid && secondName.value.length>0"
+             [class.is-valid]="secondName.valid && secondName.touched"
+             name="secondName" [(ngModel)]="authorModel.secondName">
+      <div *ngIf="secondName.errors && secondName.touched">
+        <small class="text-danger" *ngIf="secondName.errors.pattern">Second name requires only letters</small>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label>Author last name</label>
-    <input type="text" required="required" class="form-control" #lastName="ngModel" pattern="[a-zA-Z ]*" minlength="4"
-           maxlength="50"
-           [class.is-invalid]="lastName.touched && lastName.invalid"
-           [class.is-valid]="lastName.valid && lastName.touched"
-           name="lastName" [(ngModel)]="authorModel.lastName">
-    <div *ngIf="lastName.errors && lastName.touched">
-      <small class="text-danger" *ngIf="lastName.errors.required">Last name is required</small>
-      <small class="text-danger" *ngIf="lastName.errors.pattern">Last name requires only letters</small>
+    <div class="form-group">
+      <label>Author last name</label>
+      <input type="text" required="required" class="form-control" #lastName="ngModel" pattern="[a-zA-Z ]*" minlength="4"
+             maxlength="50"
+             [class.is-invalid]="lastName.touched && lastName.invalid"
+             [class.is-valid]="lastName.valid && lastName.touched"
+             name="lastName" [(ngModel)]="authorModel.lastName">
+      <div *ngIf="lastName.errors && lastName.touched">
+        <small class="text-danger" *ngIf="lastName.errors.required">Last name is required</small>
+        <small class="text-danger" *ngIf="lastName.errors.pattern">Last name requires only letters</small>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label>Bibliography</label>
-    <textarea type="text" required="required" class="form-control" #bibliography="ngModel" minlength="10"
-              maxlength="500"
-              [class.is-invalid]="bibliography.touched && bibliography.invalid"
-              [class.is-valid]="bibliography.valid && bibliography.touched"
-              name="bibliography" [(ngModel)]="authorModel.bibliography"></textarea>
-    <div *ngIf="bibliography.errors && bibliography.touched">
-      <small class="text-danger" *ngIf="lastName.invalid">Bibliography requires more than 9 letters</small>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea type="text" required="required" class="form-control" #description="ngModel" minlength="10"
+                maxlength="500"
+                [class.is-invalid]="description.touched && description.invalid"
+                [class.is-valid]="description.valid && description.touched"
+                name="bibliography" [(ngModel)]="authorModel.description"></textarea>
+      <div *ngIf="description.errors && description.touched">
+        <small class="text-danger" *ngIf="lastName.invalid">Description requires more than 9 letters</small>
+      </div>
     </div>
-  </div>
-
-  <button [disabled]="authorForm.form.invalid" class="btn btn-primary" type="submit">Add author</button>
-</form>
+    <div class="text-center">
+      <button [disabled]="authorForm.form.invalid" class="btn btn-primary" type="submit">Add author</button>
+    </div>
+  </form>
+</div>

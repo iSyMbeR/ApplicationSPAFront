@@ -13,6 +13,8 @@ import {BookListComponent} from './components/booklist/book-list.component';
 import {AuthorlistComponent} from './components/authorlist/authorlist.component';
 import {DatePipe} from "@angular/common";
 import {AuthorService} from "./services/author/author.service";
+import { EditComponent } from './components/edit/edit.component';
+import { EditAuthorComponent } from './components/edit-author/edit-author.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,18 @@ import {AuthorService} from "./services/author/author.service";
     AuthorComponent,
     MainpageComponent,
     BookListComponent,
-    AuthorlistComponent
+    AuthorlistComponent,
+    EditComponent,
+    EditAuthorComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
+      {path: '', component: MainpageComponent},
+      {path: 'bookEditor', component: EditComponent},
+      {path: 'authorEditor', component: EditAuthorComponent},
       {path: 'book', component: BookComponent},
       {path: 'author', component: AuthorComponent},
       {path: 'bookList', component: BookListComponent},

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Book} from "../../models/book";
@@ -13,7 +13,6 @@ export class BookService {
 
   constructor(private httpClient: HttpClient) {
   }
-
   public getBooks(): Observable<Book[]> {
     return this.httpClient.get<Book[]>(`${this.apiServerUrl}/book/all`);
   }
@@ -34,11 +33,9 @@ export class BookService {
     return this.httpClient.put<Book>(`${this.apiServerUrl}/book`, book);
   }
 
-  public deleteBook(bookId: number): Observable<void> {
+  public deleteBookById(bookId: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiServerUrl}/book/${bookId}`);
   }
-
-
 }
 
 
